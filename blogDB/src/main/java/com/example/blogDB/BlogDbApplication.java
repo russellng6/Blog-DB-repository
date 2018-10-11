@@ -15,13 +15,13 @@ import java.util.List;
 @SpringBootApplication
 public class BlogDbApplication {
 	
-	public Blogger createBlogger(String name, String password, String email) {	//create a new Blogger object
+	/*public Blogger createBlogger(String name, String password, String email) {	//create a new Blogger object
 		return new Blogger(name, password, email);
 	}
 	
 	public Post createPost(String title, String content, Blogger author) {	//create a new Post object
 		return new Post(title, content, author);
-	}
+	}*/
 
 	
 	public static final Logger log = LoggerFactory.getLogger(BlogDbApplication.class);
@@ -32,6 +32,7 @@ public class BlogDbApplication {
 
 	}
 	
+	/*
 	//test application
 	@Bean
 	public CommandLineRunner demo(BloggerRepository bloggerRep, PostRepository postRep) {
@@ -75,6 +76,6 @@ public class BlogDbApplication {
 			
 			
 		};
-	}
+	}*/
 	
 }

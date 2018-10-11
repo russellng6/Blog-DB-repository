@@ -1,4 +1,4 @@
-package com.example.blogDB;
+package com.example.blogDB.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,14 +7,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
 import java.util.List;
+import java.util.Set;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 @Entity
 public class Blogger {
 
+	private Long id;					//ID field
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;					//ID field
 	public Long getId() { 				//getter
 		return id; 
 	}
@@ -57,8 +60,15 @@ public class Blogger {
     public String toString() {
     	return "Author:" + getName();
     }
-
+    /*
+    private Set<Post> posts = new HashSet<>();
     //set up relationships
-    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE, orphanRemoval = true)	//we can remove posts by deleting them from this arrayList
-	private List<Post> posts = new ArrayList<Post>();
+    @OneToMany(targetEntity=Post.class, mappedBy = "blogger", cascade = CascadeType.REMOVE, orphanRemoval = true)	//we can remove posts by deleting them from this arrayList
+	public Set<Post> getPosts() {
+		return posts;
+	}
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}*/
+    
 }

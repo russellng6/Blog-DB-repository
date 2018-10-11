@@ -1,0 +1,143 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="gbk">
+<title>My Blog</title>
+<meta name="keywords" content="Test1" />
+<meta name="description" content="Test2" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Include CSS File Here -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/base.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/m.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/list.css}"/>
+
+<!-- Include JS File Here -->
+<script src="js/jquery.min.js"></script>
+<script src="js/hc-sticky.js"></script>
+<script src="js/comm.js"></script>
+
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/hc-sticky.js}"></script>
+<script type="text/javascript" th:src="@{/js/comm.js}"></script>
+    
+<!--[if lt IE 9]>
+<script type="text/javascript" th:src="@{/js/modernizr.js}"></script>
+<![endif]-->
+</head>
+
+<body>
+	<header id="header">
+		<div class="navbar">
+			<div class="topbox">
+				<p class="welcome"></p>
+				<div class="searchbox">
+					<div id="search_bar" class="search_bar">
+
+						<form id="searchform" action="[!--news.url--]e/search/index.php"
+							method="post" name="searchform">
+							<input class="input" placeholder="Test22" type="text"
+								name="keyboard" id="keyboard"> <input type="hidden"
+								name="show" value="title" /> <input type="hidden" name="tempid"
+								value="1" /> <input type="hidden" name="tbname" value="news">
+							<input type="hidden" name="Submit" value="submit" />
+
+							<p class="search_icon">
+								<span></span>
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="header-navigation">
+			<nav>
+				<div class="logo">
+					<a>My Blog</a>
+				</div>
+				<h2 id="mnavh">
+					<span class="navicon"></span>
+				</h2>
+				<ul id="starlist">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About me</a></li>
+					<li><a href="list.html">My Blog</a></li>
+				</ul>
+			</nav>
+		</div>
+
+
+		</form>
+	</header>
+	<div class="wrapper">
+		<main>
+		<div class="create_blog"></div>
+		<form action="/action_page.php">
+			<left>
+			<h2><a href="addBlog">Create new blog +</a></h2>
+
+			<!-- <textarea name="message" style="width: 800px; height: 100px;"
+				placeholder="write blog..">
+      
+          </textarea> <input type="submit"> --> </left>
+			<br> <br>
+
+			<div class="bloglist">
+				<ul>
+    
+					<li th:each="blog : ${blogs}"><i class="blogpic"><a href="#"><img
+								src="images/1.jpg" alt=""> </a></i>
+						<dl>
+							<dt>
+								<a href="#" target="_blank" th:text="${blog.title}"></a>
+							</dt>
+							<dd>
+								<span class="bloginfo" th:text="${blog.content}"></span>
+								<p class="timeinfo">
+									<span class="lanmu"><a href="#" target="_blank">User</a></span><span
+										class="date">2018-07-03</span>
+								</p>
+								<a class="read" th:href="@{'/blogList/' + ${blog.id}}">Delete</a>
+							</dd>
+						</dl></li>
+				</ul>
+			</div>
+			<!--bloglist end-->
+			<aside class="sidebar">
+				<div class="fenlei">
+					<ul class="flnav">
+						<li><a href="#" title="edit" class="pbro"></a></li>
+						<li><a title="delete" class="pall"></a></li>
+					</ul>
+				</div>
+
+			</aside>
+			<!--sidebar end-->
+
+			<div class="pagelist">
+				<a title="Total record">&nbsp;<b>1</b>
+				</a>&nbsp;&nbsp;&nbsp;<b>1</b>&nbsp;<a href="/jstt/index_2.html">2</a>&nbsp;<a
+					href="/jstt/index_3.html">3</a>&nbsp;<a href="/jstt/index_4.html">4</a>&nbsp;<a
+					href="/jstt/index_5.html">5</a>&nbsp;<a href="/jstt/index_6.html">6</a>&nbsp;<a
+					href="/jstt/index_2.html">Next</a>
+			</div>
+		</main>
+
+	</div>
+	<!--wrapper end-->
+	</div>
+	<!--wrapper end-->
+
+	</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.example.blogDB;
+package com.example.blogDB.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +39,6 @@ public class Post {
    /* @Temporal(TemporalType.DATE)
     Date publicationDate;
     }
-
     private boolean visible;
     public boolean getVisible() {
     	return visible;
@@ -51,25 +50,26 @@ public class Post {
     }
     */
     
-    protected Post() {}	//default  constructor
+    public Post() {}	//default  constructor
     
     public Post(String title, String content, Blogger author) {
     	this.title = title;
     	this.content = content;
-    	this.author = author;
+    	//this.author = author;
     }
     
-    public String toString() {
+    /*public String toString() {
     	return "Title:" + getTitle() + " " +  getAuthor() + "\n" + getContent();
-    }
+    }*/
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    
+    /*@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "blog_author")
     private Blogger author;
     
     public Blogger getAuthor() {
     	return author;
-    }
+    }*/
 
     
 }
