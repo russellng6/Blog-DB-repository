@@ -61,13 +61,14 @@ public class Reader {
     }
     
     /*
-    private Set<Comment> comments = new HashSet<>();
+
     //set up relationships
     @OneToMany(targetEntity=Comment.class, mappedBy = "reader", cascade = CascadeType.REMOVE, orphanRemoval = true)	//we can remove comments by deleting them from this arrayList
-	public Set<Comment> getComments() {
+	public List<Comment> comments;
+	public List<Comment> getComments() {
 		return comments;
 	}
-	public void setPosts(Set<Comment> comments) {
+	public void setPosts(List<Comment> comments) {
 		this.comments = comments;
 	}*/
 }

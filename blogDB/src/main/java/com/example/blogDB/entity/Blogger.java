@@ -61,13 +61,14 @@ public class Blogger {
     	return "Author:" + getName();
     }
     /*
-    private Set<Post> posts = new HashSet<>();
+
     //set up relationships
     @OneToMany(targetEntity=Post.class, mappedBy = "blogger", cascade = CascadeType.REMOVE, orphanRemoval = true)	//we can remove posts by deleting them from this arrayList
-	public Set<Post> getPosts() {
+	public List<Post> posts;
+	public List<Post> getPosts() {
 		return posts;
 	}
-	public void setPosts(Set<Post> posts) {
+	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}*/
     
