@@ -43,5 +43,14 @@ public class BlogService {
 	public void deleteBlog(Long id) {
 		postRepository.deleteById(id);
 	}
+	
+	//Implementation of adding comments to a blog, i have updated Post.java to contain comments in ArrayList<String> format
+	//what is the relationship between Post and BlogPost? 
+	//how do i change the blogcontroller to integrate this function
+	//-Russell
+	public void addComment(Post currentBlog, String comment) {
+		currentBlog.addComments(comment);	//add a comment onto the comments list
+		return;
+	}
 
 }
