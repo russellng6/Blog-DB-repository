@@ -9,6 +9,8 @@ import com.example.blogDB.entity.Post;
 
 //@Repository
 public interface PostRepository extends CrudRepository<Post, Long> {
+	Post findById(long id);
+	
 	//List<Post> findByTitle(String title);
 	
 	//List<Post> findByBlogger(Blogger blogger);

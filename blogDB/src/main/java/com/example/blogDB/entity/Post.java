@@ -3,12 +3,14 @@ package com.example.blogDB.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.FetchType;
 
 
@@ -33,6 +35,7 @@ public class Post {
     	this.title = title;
     }
 
+    @Column(columnDefinition = "TEXT")
     private String content;
     public String getContent() {
     	return content;
@@ -99,8 +102,8 @@ public class Post {
     /*public String toString() {
     	return "Title:" + getTitle() + " " +  getAuthor() + "\n" + getContent();
     }*/
-
-  
+    
+    
     /*
     @OneToMany(targetEntity=Comment.class, mappedBy = "post", cascade = CascadeType.REMOVE, orphanRemoval = true)	//we can remove posts by deleting them from this arrayList
   	public List<Comment> comments;
@@ -120,6 +123,25 @@ public class Post {
     	return author;
     }*/
 
-
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
+    @Lob 
+    @Column(length=10000000)
+    private byte[] image;
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+    
+    
+<<<<<<< HEAD
+>>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
+=======
+>>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
     
 }

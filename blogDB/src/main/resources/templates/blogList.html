@@ -19,6 +19,7 @@
             <tr th:each ="blog : ${blogs}">
                <td th:utext="${blog.title}">...</td>
                <td th:utext="${blog.content}">... </td>
+               <td th:utext="${blog.comments}">... </td> 
                <td> <a th:href="@{'/blogList/' + ${blog.id}}">Delete</a> </td>
             </tr>
          </table>

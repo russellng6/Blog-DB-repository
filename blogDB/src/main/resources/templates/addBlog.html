@@ -7,6 +7,19 @@
 <meta name="keywords" content="Test1" />
 <meta name="description" content="Test2" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 <!-- Include CSS File Here -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
@@ -74,23 +87,29 @@
 	<div class="wrapper">
 		<main>
 		<div class="create_blog"></div>
-		<form th:action="@{/addBlog}" th:object="${blogForm}" method="POST">
+		<form th:action="@{/addBlog}" th:object="${blogForm}" method="POST" enctype="multipart/form-data">
 			<left>
 			<h2><a href="addBlog">Create new blog +</a></h2>
-
-			<input type="text" style="width: 800px;" th:field="*{title}" placeholder="title"/>  
-			</br></br>
-			<textarea name="message" style="width: 800px; height: 100px;"
+			<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="title" th:field="*{title}" />
+		<!--	<input type="text" style="width: 800px;" th:field="*{title}" placeholder="title"/>  -->
+			</br>
+		<!--	<label for="exampleFormControlTextarea1">Example textarea</label>
+		<textarea name="message" style="width: 800px; height: 100px;"
 				placeholder="write blog.." th:field="*{content}">
-      
-          </textarea> <input type="submit" value="Create"> </left>
+          </textarea>  -->
+          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="write blog.." rows="3" th:field="*{content}"></textarea> 
+ 		</br>
+          <input type="checkbox" th:field="*{visible}" data-toggle="toggle" data-on="Public" data-off="Private" data-onstyle="success" data-offstyle="danger">
+          </br></br>
+          <input type="file" class="custom-file-input" th:field="*{image}" >
+          </br>
+           <input type="submit"  value="Create" class="btn btn-primary"> </left>
 			<br> <br>
 
 			<div class="bloglist">
 				<ul>
     
-					<li th:each="blog : ${blogs}"><i class="blogpic"><a href="#"><img
-								src="images/1.jpg" alt=""> </a></i>
+					<li th:each="blog : ${blogs}"><i class="blogpic"><a href="#"><img th:src="@{'data:image/jpeg;base64,'+${blog.img}}" alt="" >  </a></i>
 						<dl>
 							<dt>
 								<a href="#" target="_blank" th:text="${blog.title}"></a>
@@ -99,11 +118,19 @@
 								<span class="bloginfo" th:text="${blog.content}"></span>
 								<p class="timeinfo">
 									<span class="lanmu"><a href="#" target="_blank">User</a></span><span
-										class="date">2018-07-03</span>
+										class="date">2018-11-01</span>
 								</p>
+								<span class="pull-right">
+								 
 								<a class="read" th:href="@{'/blogList/' + ${blog.id}}">Delete</a>
+								</span>
+								
 							</dd>
-						</dl></li>
+						</dl>
+							<span class="pull-left">
+							<input type="checkbox" data-toggle="toggle" data-on="Public" data-off="Private" data-onstyle="success" data-offstyle="danger" th:checked="${blog.visible}">
+							</span>
+					</li>
 				</ul>
 			</div>
 			<!--bloglist end-->
