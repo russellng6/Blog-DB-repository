@@ -55,10 +55,11 @@ public class BlogController {
  
         String title = blogForm.getTitle();
         String content = blogForm.getContent();
- 
+        Boolean visible = blogForm.getVisible();
+        
         if (title != null && title.length() > 0 //
                 && content != null && content.length() > 0) {
-            BlogPost newBlog = new BlogPost(title, content);
+            BlogPost newBlog = new BlogPost(title, content, visible);
             blogService.saveBlog(newBlog);
  
             return "redirect:/blogList";

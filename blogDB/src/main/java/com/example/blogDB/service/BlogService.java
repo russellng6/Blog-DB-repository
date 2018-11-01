@@ -26,7 +26,7 @@ public class BlogService {
 		// checking the next element availabilty
 		while (itr.hasNext()) {
 			Post post = itr.next();
-			BlogPost p = new BlogPost(post.getId(), post.getTitle(), post.getContent());
+			BlogPost p = new BlogPost(post.getId(), post.getTitle(), post.getContent(), post.getVisible());
 			blogs.add(p);
 		}
 		return blogs;
@@ -37,12 +37,13 @@ public class BlogService {
 		Post post = new Post();
 		post.setTitle(newBlog.getTitle());
 		post.setContent(newBlog.getContent());
+		post.setVisible(newBlog.isVisible());
 		postRepository.save(post);
 	}
 
 	public void deleteBlog(Long id) {
 		postRepository.deleteById(id);
-	}
+	} 
 	
 	//Implementation of adding comments to a blog, i have updated Post.java to contain comments in ArrayList<String> format
 	//what is the relationship between Post and BlogPost? 

@@ -5,6 +5,7 @@ public class BlogPost {
 	private Long id;
 	private String title;
 	private String content;
+	private boolean visible;
 	
 	public Long getId() {
 		return id;
@@ -21,21 +22,33 @@ public class BlogPost {
 	public String getContent() {
 		return content;
 	}
-	public BlogPost(Long id, String title, String content) {
+	public BlogPost(String title, String content, boolean visible) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
+		this.visible = visible;
 	}
 	public BlogPost(String title, String content) {
 		this.title = title;
 		this.content = content;
 	}
+	public BlogPost(Long id, String title, String content, boolean visible) {
+		// TODO Auto-generated constructor stub
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.visible = visible;
+	}
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public BlogPost() {
-		super();
-		// TODO Auto-generated constructor stub
+	public boolean isVisible() {
+		return visible;
 	}
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
+	
 }
