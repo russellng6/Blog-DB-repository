@@ -49,13 +49,22 @@ public class Comment {
     }*/
 
     
-    /*@ManyToOne(fetch = FetchType.EAGER)
+    /*@ManyToOne(fetch = FetchType.EAGER)	//many comments from one author
     @JoinColumn(name = "comment_author")
     private Reader author;
-    
     public Reader getAuthor() {
     	return author;
-    }*/
+    }
+    
+    
+    @ManyToOne(fetch = FetchType.Eager)		//many comments on one post
+    @JoinColumn(name = "post_commentedOn")
+    private Post commentedOn;
+    public Post getCommentedOn() {
+    	return commentedOn;
+    }
+    
+    */
 
 
 }

@@ -100,14 +100,26 @@ public class Post {
     	return "Title:" + getTitle() + " " +  getAuthor() + "\n" + getContent();
     }*/
 
+  
+    /*
+    @OneToMany(targetEntity=Comment.class, mappedBy = "post", cascade = CascadeType.REMOVE, orphanRemoval = true)	//we can remove posts by deleting them from this arrayList
+  	public List<Comment> comments;
+  	public List<Comment> getComments() {
+  		return comments;
+  	}
+  	public void setComment(List<Comment> comments) {
+  		this.comments = comments;
+  	}
+
     
-    /*@ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "blog_author")
     private Blogger author;
     
     public Blogger getAuthor() {
     	return author;
     }*/
+
 
     
 }
