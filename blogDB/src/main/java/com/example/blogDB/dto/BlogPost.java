@@ -1,40 +1,23 @@
 package com.example.blogDB.dto;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
+
 import org.springframework.web.multipart.MultipartFile;
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
-=======
-import org.springframework.web.multipart.MultipartFile;
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
+
 
 public class BlogPost {
 
 	private Long id;
 	private String title;
 	private String content;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    //Comments implemented as list of strings
-    private ArrayList<String> comments;
-
-=======
-=======
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
 	private boolean visible;
 	private byte[] file;
 	private String img;
+
+	//Comments implemented as list of strings
+    private ArrayList<String> comments;
 	
-<<<<<<< HEAD
-	
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
-	
-=======
-	
-	
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
+
 	public String getImg() {
 		return img;
 	}
@@ -62,8 +45,7 @@ public class BlogPost {
 	public String getContent() {
 		return content;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 	
     public ArrayList<String> getComments() {
     	return comments;
@@ -71,14 +53,8 @@ public class BlogPost {
     public void addComments(String comment) {
     	comments.add(comment);
     }
-    
-	public BlogPost(Long id, String title, String content) {
-=======
+
 	public BlogPost(String title, String content, boolean visible) {
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
-=======
-	public BlogPost(String title, String content, boolean visible) {
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
 		super();
 		this.id = id;
 		this.title = title;

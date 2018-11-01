@@ -77,18 +77,9 @@ public class BlogController {
     }
  
     @RequestMapping(value = { "/addBlog" }, method = RequestMethod.POST)
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public String savePerson(Model model, 
-            @ModelAttribute("blogForm") BlogForm blogForm) {
-=======
     public String savePerson(Model model, //
             @ModelAttribute("blogForm") BlogForm blogForm) throws IOException {
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
-=======
-    public String savePerson(Model model, //
-            @ModelAttribute("blogForm") BlogForm blogForm) throws IOException {
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
+
  
         String title = blogForm.getTitle();
         String content = blogForm.getContent();
@@ -114,13 +105,5 @@ public class BlogController {
         return "addBlog";
     }
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-    
-    
-    
-=======
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
-=======
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
+
 }

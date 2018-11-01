@@ -123,11 +123,7 @@ public class Post {
     	return author;
     }*/
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
+
     @Lob 
     @Column(length=10000000)
     private byte[] image;
@@ -138,10 +134,6 @@ public class Post {
 		this.image = image;
 	}
     
-    
-<<<<<<< HEAD
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
-=======
->>>>>>> a3747cb0f55e39738ddf17e53c1d6f887d874295
+
     
 }
