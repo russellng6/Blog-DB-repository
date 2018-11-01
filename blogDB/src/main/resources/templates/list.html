@@ -101,8 +101,7 @@
 			<div class="bloglist">
 				<ul>
     
-					<li th:each="blog : ${blogs}"><i class="blogpic"><a href="#"><img
-								src="images/1.jpg" alt=""> </a></i>
+					<li th:each="blog : ${blogs}"><i class="blogpic"><a href="#"><img th:src="@{'data:image/jpeg;base64,'+${blog.img}}" alt="" > </a></i>
 						<dl>
 							<dt>
 								<a href="#" target="_blank" th:text="${blog.title}"></a>

@@ -1,10 +1,21 @@
 package com.example.blogDB.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BlogForm {
 
 	private String title;
 	private String content;
 	private Boolean visible;
+	private MultipartFile image;
+	
+
+	public MultipartFile getImage() {
+		return image;
+	}
+	public void setImage(MultipartFile image) {
+		this.image = image;
+	}
 	public Boolean getVisible() {
 		return visible;
 	}

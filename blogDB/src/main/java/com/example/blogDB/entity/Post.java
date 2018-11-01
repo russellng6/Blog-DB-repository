@@ -3,12 +3,14 @@ package com.example.blogDB.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.FetchType;
 
 
@@ -33,6 +35,7 @@ public class Post {
     	this.title = title;
     }
 
+    @Column(columnDefinition = "TEXT")
     private String content;
     public String getContent() {
     	return content;
@@ -120,6 +123,16 @@ public class Post {
     	return author;
     }*/
 
-
+    @Lob 
+    @Column(length=10000000)
+    private byte[] image;
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+    
+    
     
 }

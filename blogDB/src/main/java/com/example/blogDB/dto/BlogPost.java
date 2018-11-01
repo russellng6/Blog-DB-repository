@@ -1,12 +1,30 @@
 package com.example.blogDB.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BlogPost {
 
 	private Long id;
 	private String title;
 	private String content;
 	private boolean visible;
+	private byte[] file;
+	private String img;
 	
+	
+	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public byte[] getFile() {
+		return file;
+	}
+	public void setFile(byte[] file) {
+		this.file = file;
+	}
 	public Long getId() {
 		return id;
 	}

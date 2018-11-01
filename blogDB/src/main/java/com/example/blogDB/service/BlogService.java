@@ -1,6 +1,8 @@
 package com.example.blogDB.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,17 +29,26 @@ public class BlogService {
 		while (itr.hasNext()) {
 			Post post = itr.next();
 			BlogPost p = new BlogPost(post.getId(), post.getTitle(), post.getContent(), post.getVisible());
+			p.setFile(post.getImage());
+			if(post.getImage() != null) {
+				p.setImg(Base64.getEncoder().encodeToString(post.getImage()));
+			}
 			blogs.add(p);
 		}
 		return blogs;
 	}
 
-	public void saveBlog(BlogPost newBlog) {
+	public void saveBlog(BlogPost newBlog) throws IOException {
 		
 		Post post = new Post();
 		post.setTitle(newBlog.getTitle());
 		post.setContent(newBlog.getContent());
 		post.setVisible(newBlog.isVisible());
+		/*if(newBlog.getFile() != null && newBlog.getFile().getBytes() != null) {
+			post.setImage(newBlog.getFile().getBytes());
+		}*/
+		post.setImage(newBlog.getFile());
+		
 		postRepository.save(post);
 	}
 
