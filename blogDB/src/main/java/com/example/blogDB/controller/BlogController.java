@@ -44,31 +44,6 @@ public class BlogController {
  
         return "redirect:/blogList";
     }
-	
-<<<<<<< Updated upstream
-		//preliminary controller implementation for adding comment
-		//get info, into commentform
-	   @RequestMapping(value = { "/blogList/{id}/addComment" }, method = RequestMethod.GET)
-    	public String showAddCommentPage(Model model, @PathVariable Long id) {
- 
-        CommentForm commentForm = new CommentForm();	//create the comment form
-        model.addAttribute("commentForm", commentForm);
-        model.addAttribute("blogs", blogService.getAllBlogs());
-
-        return "blogList/{id}/addComment";
-    }
-	
-	  	@RequestMapping(value = { "/blogList/{id}/addComment" }, method = RequestMethod.POST)
-    	public String commentList(Model model, @PathVariable Long id,  @ModelAttribute("commentForm") CommentForm commentForm) {	
- 
-		blogService.addComment(id, commentForm.getContent());	//get the string content from commentForm
- 
-        return "redirect:/blogList";
-    }
-	
-	 
-	
-=======
 
     
     //Comment implementation
@@ -93,7 +68,6 @@ public class BlogController {
     }
     
     //add blogs
->>>>>>> Stashed changes
     @RequestMapping(value = { "/addBlog" }, method = RequestMethod.GET)
     public String showAddPersonPage(Model model) {
  
