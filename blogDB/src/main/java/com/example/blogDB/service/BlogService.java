@@ -29,7 +29,7 @@ public class BlogService {
 		// checking the next element availabilty
 		while (itr.hasNext()) {
 			Post post = itr.next();
-			BlogPost p = new BlogPost(post.getId(), post.getTitle(), post.getContent(), post.getVisible());
+			BlogPost p = new BlogPost(post.getId(), post.getTitle(), post.getContent(), post.getVisible(), post.getComments());
 			p.setFile(post.getImage());
 			if(post.getImage() != null) {
 				p.setImg(Base64.getEncoder().encodeToString(post.getImage()));
@@ -60,10 +60,10 @@ public class BlogService {
 	//Implementation of adding comments to a blog, i have updated Post.java to contain comments in ArrayList<String> format
 	//-Russell
 	public void addComment(Long id, String comment) {
-	    Post temp = postRepository.findById(id).orElse(null);	//find the post with the specified id, otherwise null
+
+		Post temp = postRepository.findById(id).orElse(null);
 		temp.addComments(comment);	//add a comment onto the comments list
-		postRepository.save(temp);	//re-save the post with ID "id", overwriting with new changes(added comment)
-		return;
+		postRepository.save(temp);
 	}
 
 }

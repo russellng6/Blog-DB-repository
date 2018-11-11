@@ -3,6 +3,7 @@ package com.example.blogDB.dto;
 import java.util.ArrayList;
 
 import org.springframework.web.multipart.MultipartFile;
+import java.util.ArrayList;
 
 
 public class BlogPost {
@@ -15,9 +16,8 @@ public class BlogPost {
 	private String img;
 
 	//Comments implemented as list of strings
-    private ArrayList<String> comments;
+	private ArrayList<String> comments;
 	
-
 	public String getImg() {
 		return img;
 	}
@@ -46,14 +46,6 @@ public class BlogPost {
 		return content;
 	}
 
-	
-    public ArrayList<String> getComments() {
-    	return comments;
-    }
-    public void addComments(String comment) {
-    	comments.add(comment);
-    }
-
 	public BlogPost(String title, String content, boolean visible) {
 		super();
 		this.id = id;
@@ -65,16 +57,25 @@ public class BlogPost {
 		this.title = title;
 		this.content = content;
 	}
-	public BlogPost(Long id, String title, String content, boolean visible) {
+	public BlogPost(Long id, String title, String content, boolean visible, ArrayList<String> comments) {
 		// TODO Auto-generated constructor stub
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.visible = visible;
+		this.comments = comments;
 	}
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
+    public ArrayList<String> getComments() {
+    	return comments;
+    }
+    public void addComments(String comment) {
+    	comments.add(comment);
+    }
+    
 	public boolean isVisible() {
 		return visible;
 	}
