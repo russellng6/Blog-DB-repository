@@ -2,15 +2,18 @@ package com.example.blogDB.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+
 
 import com.example.blogDB.entity.Blogger;
 
+
 //@Repository
 public interface BloggerRepository extends CrudRepository<Blogger, Long> {
-	//List<Blogger> findByName(String name);
+	Optional<Blogger> findById(Long id);
 	
-	//List<Post> findByPosts(ArrayList<Post> posts);
+	List<Blogger> findByName(String name);
 	
 }

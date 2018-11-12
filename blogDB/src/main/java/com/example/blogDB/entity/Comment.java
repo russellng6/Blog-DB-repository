@@ -38,18 +38,19 @@ public class Comment {
     
     public Comment() {}	//default  constructor
     
-    public Comment(String content, Reader author) {
+    public Comment(String content, Reader author, Post commentedOn) {
     	this.content = content;
-    	//this.author = author;
+    	this.author = author;
+    	this.commentedOn = commentedOn;
     	
     }
     
-    /*public String toString() {
-    	return "Commented by: " " +  getAuthor() + "\n" + getContent();
-    }*/
+    public String toString() {
+    	return "Commented by: " +  author.getName() + "\n" + getContent();
+    }
 
     
-    /*@ManyToOne(fetch = FetchType.EAGER)	//many comments from one author
+    @ManyToOne(fetch = FetchType.EAGER)	//many comments from one author
     @JoinColumn(name = "comment_author")
     private Reader author;
     public Reader getAuthor() {
@@ -57,14 +58,12 @@ public class Comment {
     }
     
     
-    @ManyToOne(fetch = FetchType.Eager)		//many comments on one post
+    @ManyToOne(fetch = FetchType.EAGER)		//many comments on one post
     @JoinColumn(name = "post_commentedOn")
     private Post commentedOn;
     public Post getCommentedOn() {
     	return commentedOn;
     }
     
-    */
-
 
 }

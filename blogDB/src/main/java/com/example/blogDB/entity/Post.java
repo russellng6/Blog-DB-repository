@@ -3,12 +3,14 @@ package com.example.blogDB.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.FetchType;
@@ -78,13 +80,14 @@ public class Post {
     }
     
     //Comments implemented as list of strings
+    /*
     private ArrayList<String> comments;
     public ArrayList<String> getComments() {
     	return comments;
     }
     public void addComments(String comment) {
     	comments.add(comment);
-    }
+    }*/
     
     public Post() {}	//default  constructor
     
@@ -94,25 +97,36 @@ public class Post {
     	//this.author = author;
     	this.category = category;
     	this.tags = tags;
-    	this.comments = new ArrayList<String>(comments);	//create empty arraylist to hold comments
+    	this.comments = new ArrayList<Comment>();	//create empty arraylist to hold comments
     	this.visible = visible;
     	
     }
     
-    /*public String toString() {
+    public String toString() {
     	return "Title:" + getTitle() + " " +  getAuthor() + "\n" + getContent();
-    }*/
+    }
     
     
-    /*
+    
     @OneToMany(targetEntity=Comment.class, mappedBy = "post", cascade = CascadeType.REMOVE, orphanRemoval = true)	//we can remove posts by deleting them from this arrayList
   	public List<Comment> comments;
   	public List<Comment> getComments() {
   		return comments;
   	}
+    //convert comments to string with comment.toString()
+    public List<String> getCommentsAsString() {
+        List<String> temp = new ArrayList<String>();
+        List<Comment> foo =  this.getComments();
+        for(int i = 0; i < foo.size(); i++) {
+            temp.add(foo.get(i).toString());
+        }
+        
+        return temp;
+    }
   	public void setComment(List<Comment> comments) {
   		this.comments = comments;
   	}
+  	
 
     
     @ManyToOne(fetch = FetchType.EAGER)
@@ -121,9 +135,8 @@ public class Post {
     
     public Blogger getAuthor() {
     	return author;
-    }*/
-
-
+    }
+    
     @Lob 
     @Column(length=10000000)
     private byte[] image;
@@ -134,6 +147,7 @@ public class Post {
 		this.image = image;
 	}
     
+
 
     
 }

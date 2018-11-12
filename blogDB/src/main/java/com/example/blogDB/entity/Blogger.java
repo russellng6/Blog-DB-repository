@@ -7,9 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
 import java.util.List;
-import java.util.Set;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 @Entity
 public class Blogger {
@@ -51,16 +49,15 @@ public class Blogger {
 
     protected Blogger() {}	//default constructor, for JPA
     
-    public Blogger(String name, String password, String email){		//constructor
+    public Blogger(String name, String password){		//constructor
     	this.name = name;
     	this.password = password;
-    	this.email = email;
+    	this.email = null;
     }
 
     public String toString() {
     	return "Author:" + getName();
     }
-    /*
 
     //set up relationships
     @OneToMany(targetEntity=Post.class, mappedBy = "blogger", cascade = CascadeType.REMOVE, orphanRemoval = true)	//we can remove posts by deleting them from this arrayList
@@ -70,7 +67,7 @@ public class Blogger {
 	}
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
-	}*/
+	}
     
     
     

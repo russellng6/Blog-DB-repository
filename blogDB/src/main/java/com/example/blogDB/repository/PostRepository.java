@@ -1,18 +1,17 @@
 package com.example.blogDB.repository;
 
 import java.util.List;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
-import com.example.blogDB.entity.Blogger;
+import org.springframework.data.repository.CrudRepository;
+
+
 import com.example.blogDB.entity.Post;
 
 //@Repository
 public interface PostRepository extends CrudRepository<Post, Long> {
-	Post findById(long id);
+	Optional<Post> findById(Long id);
 	
-	//List<Post> findByTitle(String title);
-	
-	//List<Post> findByBlogger(Blogger blogger);
+	List<Post> findByTitle(String title);
 	
 }
