@@ -4,12 +4,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class BlogForm {
 
+	private Long id;
 	private String title;
 	private String content;
 	private Boolean visible;
 	private MultipartFile image;
 	
-
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public MultipartFile getImage() {
 		return image;
 	}

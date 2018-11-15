@@ -20,7 +20,8 @@
                <td th:utext="${blog.title}">...</td>
                <td th:utext="${blog.content}">... </td>
                <td th:utext="${blog.comments}">... </td> 
-               <td> <a th:href="@{'/blogList/' + ${blog.id}}">Delete</a> </td>
+               <td> <a th:href="@{'/blogList/' + ${blog.id} + '/delete'}">Delete</a> </td>
+               <td> <a th:href="@{'/blogList/' + ${blog.id} + '/edit'}">Edit</a> </td>
             </tr>
          </table>
       </div>

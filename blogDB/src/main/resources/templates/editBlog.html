@@ -20,7 +20,6 @@
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
-
 <!-- Include CSS File Here -->
 <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
@@ -88,20 +87,29 @@
 	<div class="wrapper">
 		<main>
 		<div class="create_blog"></div>
-		<form action="/action_page.php">
+		<form th:action="@{'/editBlog/' + ${blogForm.id} }" th:object="${blogForm}" method="POST" enctype="multipart/form-data">
 			<left>
 			<h2><a href="addBlog">Create new blog +</a></h2>
-
-			<!-- <textarea name="message" style="width: 800px; height: 100px;"
-				placeholder="write blog..">
-      
-          </textarea> <input type="submit"> --> </left>
+			<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="title" th:field="*{title}" />
+		<!--	<input type="text" style="width: 800px;" th:field="*{title}" placeholder="title"/>  -->
+			</br>
+		<!--	<label for="exampleFormControlTextarea1">Example textarea</label>
+		<textarea name="message" style="width: 800px; height: 100px;"
+				placeholder="write blog.." th:field="*{content}">
+          </textarea>  -->
+          <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="write blog.." rows="3" th:field="*{content}"></textarea> 
+ 		</br>
+          <input type="checkbox" th:field="*{visible}" data-toggle="toggle" data-on="Public" data-off="Private" data-onstyle="success" data-offstyle="danger">
+          </br></br>
+          <input type="file" class="custom-file-input" th:field="*{image}" >
+          </br>
+           <input type="submit"  value="Save" class="btn btn-primary"> </left>
 			<br> <br>
 
 			<div class="bloglist">
 				<ul>
     
-					<li th:each="blog : ${blogs}"><i class="blogpic"><a href="#"><img th:src="@{'data:image/jpeg;base64,'+${blog.img}}" alt="" > </a></i>
+					<li th:each="blog : ${blogs}"><i class="blogpic"><a href="#"><img th:src="@{'data:image/jpeg;base64,'+${blog.img}}" alt="" >  </a></i>
 						<dl>
 							<dt>
 								<a href="#" target="_blank" th:text="${blog.title}"></a>
@@ -112,17 +120,16 @@
 									<span class="lanmu"><a href="#" target="_blank">User</a></span><span
 										class="date">2018-11-01</span>
 								</p>
+								<span class="pull-right">
+								 
+								<a class="read" th:href="@{'/blogList/' + ${blog.id} + '/delete'}">Delete</a>
+								</span>
 								
 							</dd>
 						</dl>
 							<span class="pull-left">
 							<input type="checkbox" data-toggle="toggle" data-on="Public" data-off="Private" data-onstyle="success" data-offstyle="danger" th:checked="${blog.visible}">
-							
 							</span>
-							<div class="pull-right">
-								<a class="btn btn-primary" th:href="@{'/blogList/' + ${blog.id} + '/edit'}" role="button">Edit</a>
-								<a class="btn btn-danger" th:href="@{'/blogList/' + ${blog.id} + '/delete'}" role="button">Delete</a>
-							</div>
 					</li>
 				</ul>
 			</div>

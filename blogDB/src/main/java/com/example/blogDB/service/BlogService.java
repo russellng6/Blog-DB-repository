@@ -58,6 +58,11 @@ public class BlogService {
 		
 		Post post = new Post();
 				//in future, need to save posts author as well
+		if(newBlog.getId() != null) {
+			post = postRepository.findById(newBlog.getId()).orElse(null);
+
+			post.setId(newBlog.getId());
+		}
 		post.setTitle(newBlog.getTitle());
 		post.setContent(newBlog.getContent());
 		post.setVisible(newBlog.isVisible());
