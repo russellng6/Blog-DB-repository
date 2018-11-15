@@ -5,16 +5,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import java.util.List;
 import java.util.ArrayList;
 
 @Entity
+@Access(AccessType.FIELD)
 public class Blogger {
 
+	@Id
 	private Long id;					//ID field
 	
-	@Id
+
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() { 				//getter
 		return id; 
@@ -60,8 +64,8 @@ public class Blogger {
     }
 
     //set up relationships
-    @OneToMany(targetEntity=Post.class, mappedBy = "blogger", cascade = CascadeType.REMOVE, orphanRemoval = true)	//we can remove posts by deleting them from this arrayList
-	public List<Post> posts;
+    @OneToMany(targetEntity=Post.class, mappedBy = "blogger", cascade = CascadeType.ALL, orphanRemoval = true)	//we can remove posts by deleting them from this arrayList
+	private List<Post> posts;
 	public List<Post> getPosts() {
 		return posts;
 	}

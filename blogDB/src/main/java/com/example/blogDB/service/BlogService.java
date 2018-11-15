@@ -25,8 +25,14 @@ public class BlogService {
 
 	@Autowired
 	BloggerRepository bloggerRepository;
+	
+	@Autowired
 	PostRepository postRepository;
+	
+	@Autowired
 	ReaderRepository readerRepository;
+	
+	@Autowired
 	CommentRepository commentRepository;
 	
 	

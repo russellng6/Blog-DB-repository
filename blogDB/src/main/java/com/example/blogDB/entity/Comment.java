@@ -40,29 +40,29 @@ public class Comment {
     
     public Comment(String content, Reader author, Post commentedOn) {
     	this.content = content;
-    	this.author = author;
-    	this.commentedOn = commentedOn;
+    	this.reader = author;
+    	this.post = commentedOn;
     	
     }
     
     public String toString() {
-    	return "Commented by: " +  author.getName() + "\n" + getContent();
+    	return "Commented by: " +  reader.getName() + "\n" + getContent();
     }
 
     
     @ManyToOne(fetch = FetchType.EAGER)	//many comments from one author
     @JoinColumn(name = "comment_author")
-    private Reader author;
-    public Reader getAuthor() {
-    	return author;
+    private Reader reader;
+    public Reader getReader() {
+    	return reader;
     }
     
     
     @ManyToOne(fetch = FetchType.EAGER)		//many comments on one post
     @JoinColumn(name = "post_commentedOn")
-    private Post commentedOn;
-    public Post getCommentedOn() {
-    	return commentedOn;
+    private Post post;
+    public Post getPost() {
+    	return post;
     }
     
 

@@ -97,21 +97,23 @@ public class Post {
     	//this.author = author;
     	this.category = category;
     	this.tags = tags;
-    	this.comments = new ArrayList<Comment>();	//create empty arraylist to hold comments
     	this.visible = visible;
     	
     }
     
     public String toString() {
-    	return "Title:" + getTitle() + " " +  getAuthor() + "\n" + getContent();
+    	return "Title:" + getTitle() + " " +  getBlogger() + "\n" + getContent();
     }
     
     
     
-    @OneToMany(targetEntity=Comment.class, mappedBy = "post", cascade = CascadeType.REMOVE, orphanRemoval = true)	//we can remove posts by deleting them from this arrayList
+    @OneToMany(targetEntity=Comment.class, mappedBy = "post", cascade = CascadeType.REMOVE, orphanRemoval = true)	//we can remove Comments by deleting them from this arrayList
   	public List<Comment> comments;
   	public List<Comment> getComments() {
   		return comments;
+  	}
+  	public void setComment(List<Comment> comments) {
+  		this.comments = comments;
   	}
     //convert comments to string with comment.toString()
     public List<String> getCommentsAsString() {
@@ -123,18 +125,17 @@ public class Post {
         
         return temp;
     }
-  	public void setComment(List<Comment> comments) {
-  		this.comments = comments;
-  	}
-  	
+
 
     
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "blog_author")
-    private Blogger author;
-    
-    public Blogger getAuthor() {
-    	return author;
+    private Blogger blogger;
+    public Blogger getBlogger() {
+    	return blogger;
+    }
+    public void setBlogger(Blogger blogger) {
+    	this.blogger= blogger;
     }
     
     @Lob 
