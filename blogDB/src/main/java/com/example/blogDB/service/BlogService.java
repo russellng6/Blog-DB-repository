@@ -129,7 +129,7 @@ public class BlogService {
 	}
 	
 	//given name, email, and new password to save, validate blogger credentials and save the new password
-	public void resetPassword(String name, String password, String email) {
+	public void resetBloggerPassword(String name, String password, String email) {
 		List<Blogger> bloggerLookup = bloggerRepository.findByName(name);
 		Blogger temp = bloggerLookup.get(0);
 		String bloggerName = temp.getName();	//should only be one blogger returned.
@@ -179,6 +179,22 @@ public class BlogService {
 		
 		if(readerName.equals(name) && readerPassword.equals(password)) {
 			temp.setEmail(email);
+			readerRepository.save(temp);	//resave temp to the repository, overwriting the old Reader
+			return;	//should always be true
+		}else {
+			return;
+		}
+	}
+	
+	//reset reader password given name, email, and new password
+	public void resetReaderPassword(String name, String password, String email) {
+		List<Reader> readerLookup = readerRepository.findByName(name);
+		Reader temp = readerLookup.get(0);
+		String readerName = temp.getName();	//should only be one reader returned.
+		String readerEmail = temp.getEmail();
+		
+		if(readerName.equals(name) && readerEmail.equals(email)) {
+			temp.setPassword(password);
 			readerRepository.save(temp);	//resave temp to the repository, overwriting the old Reader
 			return;	//should always be true
 		}else {
