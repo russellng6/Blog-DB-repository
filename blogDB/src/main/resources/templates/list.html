@@ -90,7 +90,7 @@
 		<div class="create_blog"></div>
 		<form action="/action_page.php">
 			<left>
-			<h2><a href="addBlog">Create new blog +</a></h2>
+			<h2><a href="/blogList/addBlog">Create new blog +</a></h2>
 
 			<!-- <textarea name="message" style="width: 800px; height: 100px;"
 				placeholder="write blog..">
@@ -101,10 +101,10 @@
 			<div class="bloglist">
 				<ul>
     
-					<li th:each="blog : ${blogs}"><i class="blogpic"><a href="#"><img th:src="@{'data:image/jpeg;base64,'+${blog.img}}" alt="" > </a></i>
+					<li th:each="blog : ${blogs}"><i class="blogpic"><a th:href="@{'/blogList/' + ${blog.id} + '/addComment'}"><img th:src="@{'data:image/jpeg;base64,'+${blog.img}}" alt="" > </a></i>
 						<dl>
 							<dt>
-								<a href="#" target="_blank" th:text="${blog.title}"></a>
+								<a th:href="@{'/blogList/' + ${blog.id} + '/addComment'}" target="_blank" th:text="${blog.title}"></a>
 							</dt>
 							<dd>
 								<span class="bloginfo" th:text="${blog.content}"></span>
@@ -120,6 +120,7 @@
 							
 							</span>
 							<div class="pull-right">
+								<a class="btn btn-light" th:href="@{'/blogList/' + ${blog.id} + '/addComment'}" role="button">Add/View Comments <span th:text="${blog.commentCount}"></span></a>
 								<a class="btn btn-primary" th:href="@{'/blogList/' + ${blog.id} + '/edit'}" role="button">Edit</a>
 								<a class="btn btn-danger" th:href="@{'/blogList/' + ${blog.id} + '/delete'}" role="button">Delete</a>
 							</div>

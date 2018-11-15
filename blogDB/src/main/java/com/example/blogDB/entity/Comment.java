@@ -46,7 +46,10 @@ public class Comment {
     }
     
     public String toString() {
-    	return "Commented by: " +  reader.getName() + "\n" + getContent();
+    	if(reader != null)
+    		return "Commented by: " +  reader.getName()  + "\n" + getContent();
+    	else
+    		return "Commented by: " +   "Anonymous " + "\n" + getContent();	
     }
 
     

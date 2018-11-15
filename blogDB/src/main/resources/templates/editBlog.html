@@ -87,9 +87,9 @@
 	<div class="wrapper">
 		<main>
 		<div class="create_blog"></div>
-		<form th:action="@{'/editBlog/' + ${blogForm.id} }" th:object="${blogForm}" method="POST" enctype="multipart/form-data">
+		<form th:action="@{'/blogList/editBlog/' + ${blogForm.id} }" th:object="${blogForm}" method="POST" enctype="multipart/form-data">
 			<left>
-			<h2><a href="addBlog">Create new blog +</a></h2>
+			<h2><a href="addBlog">Edit Comment </a></h2>
 			<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="title" th:field="*{title}" />
 		<!--	<input type="text" style="width: 800px;" th:field="*{title}" placeholder="title"/>  -->
 			</br>

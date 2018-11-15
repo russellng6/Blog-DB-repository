@@ -26,6 +26,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/m.css}"/>
 <link rel="stylesheet" type="text/css" th:href="@{/css/list.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/addComment.css}"/>
 
 <!-- Include JS File Here -->
 <script src="js/jquery.min.js"></script>
@@ -88,16 +89,10 @@
 	<div class="wrapper">
 		<main>
 		<div class="create_blog"></div>
-		<form action="/action_page.php">
 			<left>
-			<h2><a href="addBlog">Create new blog +</a></h2>
-
-			<!-- <textarea name="message" style="width: 800px; height: 100px;"
-				placeholder="write blog..">
-      
-          </textarea> <input type="submit"> --> </left>
+			
 			<br> <br>
-
+			
 			<div class="bloglist">
 				<ul>
     
@@ -115,21 +110,59 @@
 								
 							</dd>
 						</dl>
-						<div class="d-flex justify-content-around">
-						<span class="pull-left">
-								<input type="text" class="form-control"  placeholder="Add Comment.." />
-								
-								</span>	
-								<span class="pull-right">
-								<button type="button" th:onclick="@{'/blogList/' + ${blog.id} +'/addComment'}" class="btn btn-primary">Add</button>
-								</span>
-								</div>
-								
-								
 							
 					</li>
 				</ul>
 			</div>
+			
+			
+			
+			
+			
+			<div class="row bootstrap snippets">
+			    <div class="col-sm-12">
+			        <div class="comment-wrapper">
+			            <div class="panel panel-info">
+			                <div class="panel-heading">
+			                    Comment panel
+			                </div>
+			                <div class="panel-body">
+			                	<form th:action="@{'/blogList/' + ${commentForm.blogId} + '/addNewComment'}" th:object="${commentForm}" method="POST" >
+				                    <textarea class="form-control" placeholder="write a comment..." th:field="*{content}" rows="3"></textarea>
+				                    <br>
+				                    
+				                    <input type="submit"  value="Add Comment" class="btn btn-info pull-right"> 
+				                </form>
+				                
+			                    <div class="clearfix"></div>
+			                    <hr>
+			                    <ul class="media-list">
+			                        <li th:each="comment : ${comments}" class="media">
+			                            <a href="#" class="pull-left">
+			                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+			                            </a>
+			                            <div class="media-body">
+			                                <span class="text-muted pull-right">
+			                                    <small class="text-muted">30 min ago</small>
+			                                </span>
+			                                <strong class="text-success">@MartinoMont</strong>
+			                                <p th:text="${comment.content}">
+			                                    
+			                                </p>
+			                            </div>
+			                        </li>
+			                        
+			                    </ul>
+			                </div>
+			            </div>
+			        </div>
+			
+			    </div>
+			</div>
+			
+			
+			
+			
 			<!--bloglist end-->
 			<aside class="sidebar">
 				<div class="fenlei">

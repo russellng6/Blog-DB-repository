@@ -15,7 +15,14 @@ public class BlogPost {
 	private boolean visible;
 	private byte[] file;
 	private String img;
-
+	private int commentCount;
+	
+	public int getCommentCount() {
+		return commentCount;
+	}
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
 	//Comments implemented as list of strings
 	private List<String> comments;
 	

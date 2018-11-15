@@ -87,7 +87,7 @@
 	<div class="wrapper">
 		<main>
 		<div class="create_blog"></div>
-		<form th:action="@{/addBlog}" th:object="${blogForm}" method="POST" enctype="multipart/form-data">
+		<form th:action="@{/blogList/addBlog}" th:object="${blogForm}" method="POST" enctype="multipart/form-data">
 			<left>
 			<h2><a href="addBlog">Create new blog +</a></h2>
 			<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="title" th:field="*{title}" />

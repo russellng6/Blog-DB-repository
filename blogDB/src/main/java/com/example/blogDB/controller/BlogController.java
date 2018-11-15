@@ -1,6 +1,10 @@
 package com.example.blogDB.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.blogDB.dto.BlogForm;
 import com.example.blogDB.dto.BlogPost;
 import com.example.blogDB.dto.CommentForm;
+import com.example.blogDB.entity.Comment;
 import com.example.blogDB.entity.Post;
 import com.example.blogDB.repository.PostRepository;
 import com.example.blogDB.service.BlogService;
@@ -37,7 +42,9 @@ public class BlogController {
     @RequestMapping(value = { "/blogList" }, method = RequestMethod.GET)
     public String allBlogs(Model model) {
  
-        model.addAttribute("blogs", blogService.getAllBlogs());
+    	List<BlogPost> posts = blogService.getAllBlogs();
+    	Collections.reverse(posts);
+        model.addAttribute("blogs", posts);
  
         return "list";
     }
@@ -68,27 +75,43 @@ public class BlogController {
 
     
     //Comment implementation
-    @RequestMapping(value = { "/addComment" }, method = RequestMethod.GET)
-    public String showAddCommentPage(Model model) {
+    @RequestMapping(value = { "/blogList/{id}/addComment" }, method = RequestMethod.GET)
+    public String showAddCommentPage(Model model, @PathVariable Long id) {
         CommentForm commentForm = new CommentForm();
-        model.addAttribute("blogs", blogService.getAllBlogs());
+        Post post = postRepository.findById(id).get();
+        List<Comment> comments = post.getComments();
+        Collections.reverse(comments);
+        model.addAttribute("comments", comments);
+        
+        commentForm.setBlogId(id);
         model.addAttribute("commentForm", commentForm);
         
+        List<BlogPost> blogs = new ArrayList<BlogPost>();
+		
+		// checking the next element availabilty
+		BlogPost p = new BlogPost(post.getId(), post.getTitle(), post.getContent(), post.getVisible(), post.getCommentsAsString());
+		p.setFile(post.getImage());
+		if(post.getImage() != null) {
+			p.setImg(Base64.getEncoder().encodeToString(post.getImage()));
+		}
+		blogs.add(p);
+		
+		model.addAttribute("blogs", blogs);
+		//model.addAttribute("blogs", blogService.getAllBlogs());
         return "addComment";
-    
     }
  
-    @RequestMapping(value = { "/blogList/{id}/addComment" })
-    public String saveComment(Model model, @PathVariable Long p_id, @PathVariable Long r_id, @ModelAttribute("commentForm") CommentForm commentForm) throws IOException {
-        String content = commentForm.getContent();
-        
-        //blogService.addComment(p_id, r_id, content);
-   
-        return "redirect:/blogList";
+    @RequestMapping(value = { "/blogList/{id}/addNewComment" }, method = RequestMethod.POST)
+    public String saveComment(Model model, @PathVariable Long id, @ModelAttribute("commentForm") CommentForm commentForm) throws IOException {
+  
+        blogService.addComment(id, 1L, commentForm.getContent());
+        Post post = postRepository.findById(id).get();
+        model.addAttribute("blogs", blogService.getAllBlogs());
+        return "redirect:/blogList/" + id + "/addComment";
     }
     
     //add blogs
-    @RequestMapping(value = { "/addBlog" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/blogList/addBlog" }, method = RequestMethod.GET)
     public String showAddPersonPage(Model model) {
  
         BlogForm blogForm = new BlogForm();
@@ -97,7 +120,7 @@ public class BlogController {
         return "addBlog";
     }
  
-    @RequestMapping(value = { "/addBlog" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/blogList/addBlog" }, method = RequestMethod.POST)
     public String saveBlog(Model model, //
             @ModelAttribute("blogForm") BlogForm blogForm) throws IOException {
 
@@ -126,7 +149,7 @@ public class BlogController {
         return "addBlog";
     }
     
-    @RequestMapping(value = { "/editBlog/{id}" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/blogList/editBlog/{id}" }, method = RequestMethod.POST)
     public String saveEdittedBlog(Model model, //
             @ModelAttribute("blogForm") BlogForm blogForm, @PathVariable long id) throws IOException {
 

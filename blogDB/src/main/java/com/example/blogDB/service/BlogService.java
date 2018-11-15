@@ -45,6 +45,11 @@ public class BlogService {
 		while (itr.hasNext()) {
 			Post post = itr.next();
 			BlogPost p = new BlogPost(post.getId(), post.getTitle(), post.getContent(), post.getVisible(), post.getCommentsAsString());
+			
+			if(post.getCommentsAsString()!=null && !post.getCommentsAsString().isEmpty())
+				p.setCommentCount(post.getCommentsAsString().size());
+			else
+				p.setCommentCount(0);
 			p.setFile(post.getImage());
 			if(post.getImage() != null) {
 				p.setImg(Base64.getEncoder().encodeToString(post.getImage()));
