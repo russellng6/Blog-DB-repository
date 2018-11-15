@@ -123,6 +123,23 @@ public class BlogService {
 		}
 	}
 	
+	//given name, email, and new password to save, validate blogger credentials and save the new password
+	public void resetPassword(String name, String password, String email) {
+		List<Blogger> bloggerLookup = bloggerRepository.findByName(name);
+		Blogger temp = bloggerLookup.get(0);
+		String bloggerName = temp.getName();	//should only be one blogger returned.
+		String bloggerEmail = temp.getEmail();
+
+		if(bloggerName.equals(name) && bloggerEmail.equals(email)) {
+			temp.setPassword(password);
+			bloggerRepository.save(temp);	//resave temp to the repository, overwriting the old Blogger
+			return;	//should always be true
+		}else {
+			return;
+		}
+		
+	}
+	
 	public boolean loginBlogger(String name, String password) {
 		List<Blogger> bloggerLookup = bloggerRepository.findByName(name);
 		Blogger temp = bloggerLookup.get(0);
