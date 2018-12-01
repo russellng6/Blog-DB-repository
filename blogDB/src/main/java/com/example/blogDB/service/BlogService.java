@@ -3,6 +3,7 @@ package com.example.blogDB.service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -15,10 +16,12 @@ import com.example.blogDB.entity.Blogger;
 import com.example.blogDB.entity.Comment;
 import com.example.blogDB.entity.Post;
 import com.example.blogDB.entity.Reader;
+import com.example.blogDB.entity.Admin;
 import com.example.blogDB.repository.BloggerRepository;
 import com.example.blogDB.repository.CommentRepository;
 import com.example.blogDB.repository.PostRepository;
 import com.example.blogDB.repository.ReaderRepository;
+import com.example.blogDB.repository.AdminRepository;
 
 @Service
 public class BlogService {
@@ -34,6 +37,9 @@ public class BlogService {
 	
 	@Autowired
 	CommentRepository commentRepository;
+	
+	@Autowired
+	AdminRepository adminRepository;
 	
 	
 	public List<BlogPost> getAllBlogs() {
@@ -81,7 +87,7 @@ public class BlogService {
 
 	public void deleteBlog(Long id) {
 		postRepository.deleteById(id);
-	} 
+	}
 	
 	//Implementation of adding comments to a blog, i have updated Post.java to contain a list of Comment objects
 	//-Russell
@@ -219,6 +225,96 @@ public class BlogService {
 			return false;
 		}
 	}
+	
+	//Admin functions
+	//this function only for developer use, don't allow any users to register as admin
+	public boolean registerAdmin(String name, String password) {
+		List<Admin> adminLookup = adminRepository.findByName(name);	//check to see if name is already taken
+		if (adminLookup.get(0).getName().equals(name)) {
+			System.out.println("Name already taken\n");	//how can we show this error?
+			return false;
+		}
+		else {	//create new admin in repository and return true
+		Admin newAdmin = new Admin(name, password);
+		adminRepository.save(newAdmin);
+		return true;
+		}
+	}
+	
+	//login admin
+	public boolean loginAdmin(String name, String password) {
+		List<Admin> adminLookup = adminRepository.findByName(name);
+		Admin temp = adminLookup.get(0);
+		String adminName = temp.getName();	//should only be one reader returned.
+		String adminPassword = temp.getPassword();
+		
+		if(adminName.equals(name) && adminPassword.equals(password)) {
+			return true;	//if parameters match, return true
+		}else {
+			return false;
+		}
+	}
+	
+	//view total number of registered users
+	public int totalBloggers() {
+		Iterable<Blogger> allBloggers = bloggerRepository.findAll();
+		int count = 0;
+		for (Object i : allBloggers) {
+		    count++;
+		}
+		return count;
+	}
+	
+	//view total number of registered readers
+	public int totalReaders() {
+		Iterable<Reader> allReaders = readerRepository.findAll();
+		int count = 0;
+		for (Object i : allReaders) {
+		    count++;
+		}
+		return count;
+	}
+	
+	//view total number of posts
+	public int totalPosts() {
+		Iterable<Post> allPosts = postRepository.findAll();
+		int count = 0;
+		for (Object i : allPosts) {
+		    count++;
+		}
+		return count;
+	}
+	
+	//view posts by blogger
+	public List<Post> postsByAuthor(String name) {
+		List<Blogger> bloggerLookup = bloggerRepository.findByName(name);
+		
+		Blogger temp = bloggerLookup.get(0);
+		
+		return temp.getPosts(); 
+	}
+	
+	//view comments by reader
+	public List<Comment> commentsbyAuthor(String name) {
+		List<Reader> readerLookup = readerRepository.findByName(name);
+		
+		Reader temp = readerLookup.get(0);
+		
+		return temp.getComments(); 
+	}
+	
+	//delete blogger
+	public void deleteBlogger(Long b_id) {
+		bloggerRepository.deleteById(b_id);
+	}
+	
+	//delete reader
+	public void deleteReader(Long r_id) {
+		readerRepository.deleteById(r_id);
+	}
+	
+	
+	
 	
 		
 
